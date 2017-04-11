@@ -144,6 +144,10 @@ add_definitions (${CHAI3D_DEFINITIONS})
 # add_executable(${PROJECT_NAME}_node src/falcon_ros_node.cpp)
 
 add_executable(falconNode src/falconNode.cpp)
+add_executable(falconVisualization src/falconVisualization.cpp)
+add_executable(falconPDController src/falconPDController.cpp)
+add_executable(falconSpringDamper src/falconSpringDamper.cpp)
+add_executable(falconRecorder src/falconRecorder.cpp)
 
 
 
@@ -162,7 +166,10 @@ add_executable(falconNode src/falconNode.cpp)
 #   ${catkin_LIBRARIES}
 # )
 target_link_libraries(falconNode ${catkin_LIBRARIES} ${CHAI3D_LIBRARIES} ${GLFW_LIBRARIES})
-
+target_link_libraries(falconVisualization ${catkin_LIBRARIES} ${CHAI3D_LIBRARIES} ${GLFW_LIBRARIES})
+target_link_libraries(falconPDController ${catkin_LIBRARIES})
+target_link_libraries(falconSpringDamper ${catkin_LIBRARIES})
+target_link_libraries(falconRecorder ${catkin_LIBRARIES})
 
 
 

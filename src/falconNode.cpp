@@ -268,6 +268,8 @@ void close(void)
 	// delete resources
 	delete hapticsThread;
 	delete handler;
+
+	std::cout<< "\n" << "Terminating the program safely!" << "\n" <<std::endl;
 }
 
 //------------------------------------------------------------------------------
