@@ -61,6 +61,13 @@ void chatterCallback(const geometry_msgs::WrenchStamped::ConstPtr& msg);
 
 
 
+//------------------------------------------------------------------------------
+// Time variables to handle cases where no desired force is received
+//------------------------------------------------------------------------------
+
+//ros::Duration time_release(.1);
+ros::Time time_lastForceUpdate;
+float minForceFreq;
 
 //==============================================================================
 /*
@@ -128,6 +135,10 @@ int main(int argc, char **argv)
 	//--------------------------------------------------------------------------
 
 	ros::Time::now();
+
+	// if the update rate of desired force drops below 100Hz, the program will write zero forces on the haptic
+	minForceFreq = 0.01;
+	time_lastForceUpdate = ros::Time::now();
 
 
 
@@ -207,6 +218,8 @@ void chatterCallback(const geometry_msgs::WrenchStamped::ConstPtr& msg)
 	hapticDeviceForce_desired(0) = msg->wrench.force.x;
 	hapticDeviceForce_desired(1) = msg->wrench.force.y;
 	hapticDeviceForce_desired(2) = msg->wrench.force.z;
+
+	time_lastForceUpdate = ros::Time::now();
 }
 
 
@@ -239,7 +252,11 @@ void updateHaptics(void)
 
 
 		// READ AND APPLY FORCES
-		force_desired.add(hapticDeviceForce_desired);
+
+		// if the update rate in ok forces will be applied, otherwise zero forces will be applied
+		if( (ros::Time::now() - time_lastForceUpdate).toSec() < minForceFreq)
+			force_desired.add(hapticDeviceForce_desired);
+
 		hapticDevice->setForce(force_desired);
 
 
