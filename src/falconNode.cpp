@@ -173,7 +173,7 @@ int main(int argc, char **argv)
 
 		geometry_msgs::WrenchStamped msg_force_real;
 		msg_force_real.header.stamp = time_now;
-		msg_force_real.header.frame_id = "/end_effector";
+		msg_force_real.header.frame_id = "FT300_link";
 		msg_force_real.wrench.force.x = hapticDeviceForce_real(0);
 		msg_force_real.wrench.force.y = hapticDeviceForce_real(1);
 		msg_force_real.wrench.force.z = hapticDeviceForce_real(2);

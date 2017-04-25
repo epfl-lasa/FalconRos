@@ -1,0 +1,13 @@
+<?xml version="1.0" ?>
+<launch>
+
+
+
+  <node name="falcon_node" pkg="falcon_ros" type="falconNode" output="screen">
+  	      <remap from="/falcon/force_real" to="/wrench" />
+    </node>
+
+
+  <node name="falcon_springdamper" pkg="falcon_ros" type="falconSpringDamper" output="screen"/>
+
+</launch>

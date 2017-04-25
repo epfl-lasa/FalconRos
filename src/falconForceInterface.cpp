@@ -42,9 +42,9 @@ public:
 
 	void updateSpring(const geometry_msgs::PoseStamped::ConstPtr& msg_pose)
 	{
-		force_spring.wrench.force.x = -20 * msg_pose->pose.position.x;
-		force_spring.wrench.force.y = -20 * msg_pose->pose.position.y;
-		force_spring.wrench.force.z = -20 * msg_pose->pose.position.z;
+		force_spring.wrench.force.x = -1000 * msg_pose->pose.position.x;
+		force_spring.wrench.force.y = -1000 * msg_pose->pose.position.y;
+		force_spring.wrench.force.z = -1000 * msg_pose->pose.position.z;
 
 
 		m.lock();
@@ -66,9 +66,9 @@ public:
 
 	void updateDamper(const geometry_msgs::TwistStamped::ConstPtr& msg_vel)
 	{
-		force_damping.wrench.force.x = -0 * msg_vel->twist.linear.x;
-		force_damping.wrench.force.y = -0 * msg_vel->twist.linear.y;
-		force_damping.wrench.force.z = -0 * msg_vel->twist.linear.z;
+		force_damping.wrench.force.x = -20 * msg_vel->twist.linear.x;
+		force_damping.wrench.force.y = -20 * msg_vel->twist.linear.y;
+		force_damping.wrench.force.z = -20 * msg_vel->twist.linear.z;
 
 
 		m.lock();
