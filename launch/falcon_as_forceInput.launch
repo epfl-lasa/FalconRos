@@ -4,7 +4,7 @@
 
 
   <node name="falcon_node" pkg="falcon_ros" type="falconNode" output="screen">
-  	      <remap from="/falcon/force_real" to="/wrench" />
+  	      <remap from="/falcon/force_real" to="/admittance_control/wrench" />
     </node>
 
 
